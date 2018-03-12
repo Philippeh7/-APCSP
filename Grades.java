@@ -4,71 +4,113 @@
 //Class -
 //Lab  -
 
-import java.lang.System;
-import java.lang.Math;
+import java.util.Arrays;
 import java.util.Scanner;
+import static java.lang.System.*;
+import static java.util.Arrays.*;
 
 public class Grades
 {
-	//instance variables
-	private double sum;
 	private double[] grades;
 	
-
-	//constructor
+	
 	public Grades()
 	{
-		
+		setGrades("");
 	}
 	
-	public Grades(double summat, double[] gradelist)
+	public Grades(String gradeList)
 	{
-		setGrades(gradelist);
+		setGrades(gradeList);		
 	}
-
-
-	//set method
-	public void setGrades(double[] gradelist)
+	
+	public void setGrades(String gradeList)
 	{
-		grades= gradelist;
+		String temp;
+		temp = "" + gradeList.charAt(0);
+		grades = new double[Integer.parseInt(temp)];
+		gradeList = gradeList.substring(4);
+		Scanner chopper = new Scanner(gradeList);
+		int counter = 0;
+		while(chopper.hasNext())
+		{
+			setGrade(counter,chopper.nextDouble());
+			counter++;
+		}
 	}
-
-
-	private double getSum()
+	
+	public void setGrade(int spot, double grade)
+	{
+		grades[spot] = grade;
+	}
+	
+	public double getSum()
 	{
 		double sum=0.0;
 		for(int i=0;i<grades.length;i++)
 		{
-			sum += grades[i];
+			sum = sum + grades[i];
 		}
+
 
 
 		return sum;
 	}
-
-	public double getAverage()
+	
+	public double getLowGrade()
 	{
-		double average=0.0;
-		average = getSum()/grades.length;
-
-
-		return average;
-	}
-
-
-	public String toString()
-	{
-		String output = "";
+		double low = Double.MAX_VALUE;
 		for(int i=0;i<grades.length;i++)
 		{
-			output = output + "\n Grade " + i + " =" + grades[i];
+			if(i==0)
+				low = grades[i];
+			else if(grades[i] < low)
+				low = grades[i];
+			
 		}
-		output = output + "\n Average = " + getAverage();
-		
-		
-		return output;
+
+
+
+
+		return low;
 	}
+	
+	public double getHighGrade()
+	{
+		double high = Double.MIN_VALUE;
+		for(int i=0;i<grades.length;i++)
+		{
+			if(i==0)
+				high = grades[i];
+			else if(grades[i] > high)
+				high = grades[i];
+			
+		}
 
 
 
+
+		return high;
+	}
+	
+	public int getNumGrades()
+	{
+		return grades.length;
+	}
+	
+	public double[] getGrades()
+	{
+		return grades;
+	}
+	
+	public String toString()
+	{
+		String output= grades + "\nsum = " + getSum() + "\nGrades Length = " + getNumGrades() + "\nLow Grade = " + getLowGrade() + "\nHigh Grade = " + getHighGrade();
+		
+
+
+
+
+		return output;
+	}	
 }
