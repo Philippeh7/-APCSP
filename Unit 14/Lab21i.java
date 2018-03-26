@@ -13,10 +13,13 @@ public class Lab21i
 {
 	public static void main( String args[] ) throws IOException
 	{
-		Scanner keyboard = new Scanner(new File("blahblah"));
-		while(keyboard.hasNext()) {
-		Maze tester = new Maze(keyboard.nextInt(), keyboard.nextLine());
-		System.out.print(tester);
+		Scanner keyboard = new Scanner(new File("src/lab21i.dat"));
+		while(keyboard.hasNext()) 
+		{
+			int i = keyboard.nextInt();
+			String s = keyboard.nextLine();
+			Maze tester = new Maze(i, keyboard.nextLine());
+			System.out.print(tester);
 		}
 	}
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import static java.lang.System.*;
 
-public class Maze
+public class Maze 
 {
    private int[][] maze;
 
@@ -49,7 +49,7 @@ public class Maze
 		if(r>0 && maze[r-1][c] == 1 && hasExitPath(r-1,c))
 				return true;
 		if(c<(maze.length-1) && maze[r][c+1] == 1 && hasExitPath(r,c+1))
-			return true;
+				return true;
 		if(c>0 && maze[r][c-1] == 1 && hasExitPath(r,c-1))
 				return true;
 	  }
@@ -60,22 +60,22 @@ public class Maze
 
 	public String toString()
 	{
-		String output="";
+		String output="\n";
 		for(int k=0;k<maze.length;k++)
 		{
 			for(int i=0;i<maze.length;i++ )
 			{
 			
-				output += maze[k][i];
+				output += maze[k][i] + " ";
 				
 			}
 			output += "\n";
 		}
 
 		if(hasExitPath(0,0))
-			output += "\n" + "Has an Exit";
+			output += "\n" + "Has an Exit \n" ;
 		else
-			output += "\n" + "Does not have an Exit";
+			output += "\n" + "Does not have an Exit \n";
 
 
 		return output;
