@@ -27,7 +27,8 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 
 
 		//instantiate a Ball
-		
+		ball = new Ball(20,20,20,20,Color.BLUE,2,2);
+		leftPaddle = new Paddle(20,20,20,20,Color.RED,3);
 		
 		
 		//instantiate a left Paddle
@@ -80,7 +81,7 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 		if(keys[1] == true)
 		{
 			//move left paddle down and draw it on the window
-
+			leftPaddle.moveDownAndDraw(window);
 
 		}
 		if(keys[2] == true)

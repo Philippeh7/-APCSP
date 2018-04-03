@@ -7,13 +7,16 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+
+import static java.lang.System.out;
+
 import java.awt.Canvas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class BallTestTwo extends Canvas implements Runnable
 {
-	private Ball ball;
+	private Ball ball ;
 
 	public BallTestTwo()
 	{
@@ -21,6 +24,7 @@ class BallTestTwo extends Canvas implements Runnable
 		setVisible(true);
 
 		//instantiate a new Ball
+		ball = new Ball(20,20,20,20,Color.BLUE,5,6);
 
 
 		//test the Ball thoroughly

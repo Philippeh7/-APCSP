@@ -45,6 +45,13 @@ public class Ball extends Block implements Collidable
 		ySpeed = 1;
 
 	}
+	public Ball(int x, int y, int w, int h, int xs, int ys)
+	{
+		super(x,y,w,h);
+		xSpeed = xs;
+		ySpeed = ys;
+
+	}
 	
 	public Ball(int x, int y, int w, int h, Color col, int xs, int ys)
 	{
@@ -54,11 +61,11 @@ public class Ball extends Block implements Collidable
 
 	}
 	
-	public void setxspeed(int x){
+	public void setXSpeed(int x){
 		xSpeed = x;
 	}
 	
-	public void setyspeed(int y){
+	public void setYSpeed(int y){
 		ySpeed = y;
 	}
 	
@@ -68,18 +75,20 @@ public class Ball extends Block implements Collidable
 
    public void moveAndDraw(Graphics window)
    {
+	  window.setColor(getcolor());
 	  window.fillOval(getX(), getY(), getwidth(), getheight());
-
-
+	  Ball repeat =  new Ball(getX(),getY(),getwidth(),getheight(),Color.WHITE,getXSpeed(),getYSpeed());
       setX(getX()+xSpeed);
       setY(getY()+ySpeed);
-
+      window.setColor(repeat.getcolor());
+      window.fillOval(repeat.getX(), repeat.getY(), repeat.getwidth(), repeat.getheight());
+      window.setColor(getcolor());
       window.fillOval(getX(), getY(), getwidth(), getheight());
    }
    
 	public boolean equals(Ball obj)
 	{
-		if(obj.getxspeed() == xSpeed && obj.getyspeed() == ySpeed)
+		if(obj.getXSpeed() == xSpeed && obj.getYSpeed() == ySpeed)
 			return true;
 
 
@@ -88,16 +97,16 @@ public class Ball extends Block implements Collidable
 	}   
 
    //add the get methods
-	public int getxspeed(){
+	public int getXSpeed(){
 		return xSpeed;
 	}
 	
-	public int getyspeed(){
+	public int getYSpeed(){
 		return ySpeed;
 	}
 	
-	public boolean didCollideLeft(Ball obj){
-		if(obj.getX() == getX() && obj.getheight() >= getY() && obj.getheight() <= getY()){
+	public boolean didCollide(Paddle obj){
+		if(obj.getX() + obj.getwidth()/2 >= getX() && obj.getX() - obj.getwidth()/2 <= getX() && obj.getY() + obj.getheight()/2 >= getY() && obj.getY() - obj.getheight()/2 <= getY()){
 			return true;
 		}
 		
@@ -105,23 +114,9 @@ public class Ball extends Block implements Collidable
 
 	}
 	
-	public boolean didCollideRight(Ball obj){
-		if(obj.getX() == getX() && obj.getheight() >= getY() && obj.getheight() <= getY()){
-			return true;
-		}
-		
-		return false;
-
-	}
 	
-	public boolean didCollideTop(Ball obj){
-		if(obj.getX() == getX() && obj.getheight() >= getY() && obj.getheight() <= getY()){
-			return true;
-		}
-		
-		return false;
-
-	}
+	
+	
 
 	
 	public String toString(){

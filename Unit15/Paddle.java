@@ -7,7 +7,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Paddle extends Block
+public class Paddle extends Block 
 {
    //instance variables
    private int speed;
@@ -78,22 +78,32 @@ public class Paddle extends Block
 
    public void moveUpAndDraw(Graphics window)
    {
+	   window.setColor(getcolor());
 	   window.fillRect(getX(), getY(), getwidth(), getheight());
+	   Paddle repeat = new Paddle(getX(), getY(), getwidth(), getheight(),Color.WHITE,getspeed());
 	   setY(getY() - speed);
+	   window.setColor(Color.WHITE);
+	   window.fillRect(repeat.getX(), repeat.getY(), repeat.getwidth(), repeat.getheight());
+	   window.setColor(getcolor());
 	   window.fillRect(getX(), getY(), getwidth(), getheight());
    }
 
    public void moveDownAndDraw(Graphics window)
    {
+	   window.setColor(getcolor());
 	   window.fillRect(getX(), getY(), getwidth(), getheight());
+	   Paddle repeat = new Paddle(getX(), getY(), getwidth(), getheight(),Color.WHITE,getspeed());
 	   setY(getY() + speed);
+	   window.setColor(Color.WHITE);
+	   window.fillRect(repeat.getX(), repeat.getY(), repeat.getwidth(), repeat.getheight());
+	   window.setColor(getcolor());
 	   window.fillRect(getX(), getY(), getwidth(), getheight());
 
    }
 
    //add get methods
    
-   public int setspeed(){
+   public int getspeed(){
 		return speed;
 	}
    

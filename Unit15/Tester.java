@@ -17,16 +17,21 @@ public class Tester extends JFrame
 		super("PONG TESTER");
 		setSize(WIDTH,HEIGHT);
 		
-		getContentPane().add(new BlockTestTwo());		
+		//getContentPane().add(new BlockTestTwo());		
 		
 		//uncomment when you are ready to test the Ball
 		//getContentPane().add(new BallTestTwo());		
-		
+	
 		//PaddleTestTwo padTest = new PaddleTestTwo();
 		//((Component)padTest).setFocusable(true);			
 		//getContentPane().add(padTest);
+		
+		Pong padTest = new Pong();
+		((Component)padTest).setFocusable(true);			
+		getContentPane().add(padTest);
 				
 		setVisible(true);
+		
 	}
 	
 	public static void main( String args[] )

@@ -17,17 +17,22 @@ import java.awt.event.ActionListener;
 
 public class Pong extends Canvas implements KeyListener, Runnable
 {
-	private Ball ball;
+	private BlinkyBall ball;
 	private Paddle leftPaddle;
 	private Paddle rightPaddle;
 	private boolean[] keys;
 	private BufferedImage back;
+	private int score1 = 0;
+	private int score2 = 0;
+	
 
 
 	public Pong()
 	{
 		//set up all variables related to the game
-
+		ball = new BlinkyBall(20,20,20,20,Color.BLUE,1,1);
+		leftPaddle = new Paddle(20,20,20,60,Color.RED,3);
+		rightPaddle = new Paddle(600,20,20,60,Color.RED,3);
 
 
 
@@ -48,64 +53,95 @@ public class Pong extends Canvas implements KeyListener, Runnable
    public void paint(Graphics window)
    {
 		//set up the double buffering to make the game animation nice and smooth
-		Graphics2D twoDGraph = (Graphics2D)window;
+		//Graphics2D twoDGraph = (Graphics2D)window;
 
 		//take a snap shop of the current screen and same it as an image
 		//that is the exact same width and height as the current screen
-		if(back==null)
-		   back = (BufferedImage)(createImage(getWidth(),getHeight()));
+		//if(back==null)
+		 //  back = (BufferedImage)(createImage(getWidth(),getHeight()));
 
 		//create a graphics reference to the back ground image
 		//we will draw all changes on the background image
-		Graphics graphToBack = back.createGraphics();
+		//Graphics graphToBack = back.createGraphics();
 
 
-		ball.moveAndDraw(graphToBack);
-		leftPaddle.draw(graphToBack);
-		rightPaddle.draw(graphToBack);
+		ball.moveAndDraw(window);
+		leftPaddle.draw(window);
+		rightPaddle.draw(window);
+		window.drawString("LeftPaddle " + score1 + " ", 200, 500);
+		window.drawString("RightPaddle " + score2 + " ", 200, 520);
 
 
 		//see if ball hits left wall or right wall
-		if(!(ball.getX()>=10 && ball.getX()<=780))
+		if(!(ball.getX()>= -50 && ball.getX()<=785))
 		{
-			ball.setXSpeed(0);
-			ball.setYSpeed(0);
+			window.setColor(Color.WHITE);
+			window.drawString("LeftPaddle " + score1 + " ", 200, 500);
+			window.drawString("RightPaddle " + score2 + " ", 200, 520);
+			window.setColor(Color.RED);
+			if(ball.getX() >= 10) {
+				window.drawString("LeftPaddle " + score1 + " ", 200, 500);	
+				score2 += 1;
+				window.drawString("RightPaddle " + score2 + " ", 200, 520);	
+			}
+			else {
+				score1 += 1;
+				window.drawString("LeftPaddle " + score1 + " ", 200, 500);	
+				
+				window.drawString("RightPaddle " + score2 + " ", 200, 520);	
+			}
+			window.setColor(Color.WHITE);
+			window.drawOval(ball.getX(), ball.getY(), ball.getwidth(), ball.getwidth());
+			ball.setPos(400, 200);
+			
+		
 		}
 
 		
 		//see if the ball hits the top or bottom wall 
-
+		if(!(ball.getY()>=10 && ball.getY()<=550)){
+			ball.setYSpeed(-ball.getYSpeed());
+		}
+		
 
 
 
 		//see if the ball hits the left paddle
-		
+		if(ball.didCollide(leftPaddle)) {
+			ball.setXSpeed(-ball.getXSpeed());
+		}
 		
 		
 		//see if the ball hits the right paddle
-		
+		if(ball.didCollide(rightPaddle)) {
+			ball.setXSpeed(-ball.getXSpeed());
+		}
 		
 		
 
 
 		//see if the paddles need to be moved
+		if(keys[0] == true)
+		{
+			//move left paddle up and draw it on the window
+			leftPaddle.moveUpAndDraw(window);
+		}
+		if(keys[1] == true)
+		{
+			//move left paddle down and draw it on the window
+			leftPaddle.moveDownAndDraw(window);
 
+		}
+		if(keys[2] == true)
+		{
+			rightPaddle.moveUpAndDraw(window);
+		}
+		if(keys[3] == true)
+		{
+			rightPaddle.moveDownAndDraw(window);
+		}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-		twoDGraph.drawImage(back, null, 0, 0);
+		//twoDGraph.drawImage(back, null, 0, 0);
 	}
 
 	public void keyPressed(KeyEvent e)
