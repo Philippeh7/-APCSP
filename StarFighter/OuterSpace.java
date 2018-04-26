@@ -26,7 +26,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	
 	private AlienHorde horde;
 	private Bullets shots;
-	
+	private Blueshellhorde blueshells;
+	private Bullets othershots;
+	private int counter;
 
 	private boolean[] keys;
 	private BufferedImage back;
@@ -36,14 +38,16 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		setBackground(Color.black);
 
 		keys = new boolean[5];
-
+		counter = 0;
 		//instantiate other instance variables
 		//Ship, Alien
 		ship = new Ship(370,450,50,50,2);
 		//alienOne = new Alien(300,50,30,30,2);
 		//alienTwo = new Alien(440,50,30,30,2);
 		horde = new AlienHorde(50);
+		blueshells = new Blueshellhorde(5);
 		shots = new Bullets();
+		othershots = new Bullets();
 		
 
 		this.addKeyListener(this);
@@ -96,10 +100,21 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			shots.add(new Ammo(ship.getX() + 20,ship.getY() + 20,ship.getSpeed()));
 		}
+		if (counter == 5){
+			for(int i = 0;i<blueshells.returnlist().size();i++){
+				othershots.add(new Ammo(blueshells.returnlist().get(i).getX(),blueshells.returnlist().get(i).getY(), Math.abs(blueshells.returnlist().get(i).getSpeed())));
+			}
+		}
+			
 		
 		
 		shots.drawEmAll(twoDGraph);
 		shots.moveEmAll();
+		othershots.drawEmAll(twoDGraph);
+		othershots.moveEmAll();
+		blueshells.drawEmAll(twoDGraph);
+		blueshells.moveEmAll();
+		blueshells.removeDeadOnes(shots.getList());
 		horde.moveEmAll();
 		horde.removeDeadOnes(shots.getList());
 		//add code to move Ship, Alien, etc.
