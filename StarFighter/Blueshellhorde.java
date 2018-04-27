@@ -10,18 +10,22 @@ public class Blueshellhorde
 {
 	private List<Blueshell> blueshells;
 	private Image image; 
+	
+	/**
+	 * Instantiates the blueshell class, with picture and basic placement
+	 */
 
 	public Blueshellhorde(int size)
 	{
-		int x = 50;
+		int x = 20;
 		int y = 50;
 		blueshells = new ArrayList<Blueshell>();
 		for(int i=0;i<size;i++){
 			blueshells.add(new Blueshell(x,y,30,30,2));
-				x += 50;
+				x += 100;
 				if(x == 700){
 					x = 300;
-					y += 50;
+					y += 70;
 				}
 			
 			
@@ -30,7 +34,7 @@ public class Blueshellhorde
 			
 			try
 			{
-				image = ImageIO.read(new File("C:\\Users\\hansenestruchp0969\\Desktop\\hansenestruchjava\\Unit 17\\src\\download.jpg"));
+				image = ImageIO.read(new File("C:\\Users\\Philippe\\Desktop\\StarFighter\\download.jpg"));
 			
 			}
 			catch(Exception e)
@@ -38,6 +42,9 @@ public class Blueshellhorde
 			}
 	}
 
+	/**
+	 * Adds a blueshell when needed
+	 */
 	public void add(Blueshell al)
 	{
 		blueshells.add(al);
@@ -50,7 +57,9 @@ public class Blueshellhorde
 			window.drawImage(image,blueshells.get(i).getX(),blueshells.get(i).getY(),blueshells.get(i).getWidth(),blueshells.get(i).getHeight(),null);
 		}
 	}
-
+	/**
+	 * Below is move em all code which bounces the blue shells around depending on what corner they hit 
+	 */
 	public void moveEmAll()
 	{
 		for(int i = 0; i < blueshells.size();i++)
@@ -58,16 +67,18 @@ public class Blueshellhorde
 			blueshells.get(i).setX(blueshells.get(i).getX() + blueshells.get(i).getSpeed()/2);
 			blueshells.get(i).setY(blueshells.get(i).getY() + blueshells.get(i).getSpeed()/2);
 			if(blueshells.get(i).getX()>740)
-				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed());
+				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed() + 1);
 			if(blueshells.get(i).getX()<0)
-				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed());
+				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed() + 1);
 			if(blueshells.get(i).getY()>520)
-				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed());
+				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed() + 1);
 			if(blueshells.get(i).getY()<0)
-				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed());
+				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed() + 1);
 		}	
 	}
-
+	/**
+	 * Checks for any hits
+	 */
 	public void removeDeadOnes(List<Ammo> shots)
 	{
 		for(int i = 0;i<shots.size();i++){
@@ -80,6 +91,9 @@ public class Blueshellhorde
 			}
 		}
 	}
+	/**
+	 * Returns list for use in other methods
+	 */
 
 	public List<Blueshell> returnlist(){
 		return blueshells;

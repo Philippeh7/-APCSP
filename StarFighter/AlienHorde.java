@@ -36,7 +36,7 @@ public class AlienHorde
 			
 			try
 			{
-				image = ImageIO.read(new File("C:\\Users\\hansenestruchp0969\\Desktop\\Unit10-2016\\alien.jpg"));
+				image = ImageIO.read(new File("C:\\Users\\Philippe\\Desktop\\StarFighter\\alien.jpg"));
 			
 			}
 			catch(Exception e)
@@ -80,7 +80,13 @@ public class AlienHorde
 				}
 			}
 		}
+		
 	}
+	
+	public List<Alien> getList(){
+		return aliens;
+	}
+	
 
 	public String toString()
 	{

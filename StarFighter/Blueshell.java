@@ -31,7 +31,7 @@ public class Blueshell extends MovingThing
 		speed=s;
 		try
 		{
-			image = ImageIO.read(new File("C:\\Users\\hansenestruchp0969\\Desktop\\hansenestruchjava\\Unit 17\\src\\download.jpg"));
+			image = ImageIO.read(new File("C:\\Users\\Philippe\\Desktop\\StarFighter\\download.jpg"));
 			//image = ImageIO.read(url);
 		}
 		catch(Exception e)

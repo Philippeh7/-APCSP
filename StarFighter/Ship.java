@@ -6,6 +6,7 @@
 
 import java.io.File;
 import java.net.URL;
+import java.util.List;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -15,6 +16,7 @@ public class Ship extends MovingThing
 {
 	private int speed;
 	private Image image;
+	private int lives;
 
 	public Ship()
 	{
@@ -37,13 +39,14 @@ public class Ship extends MovingThing
 		speed=s;
 		try
 		{
-			image = ImageIO.read(new File("C:\\Users\\hansenestruchp0969\\Desktop\\Unit10-2016\\ship.jpg"));
+			image = ImageIO.read(new File("C:\\Users\\Philippe\\Desktop\\StarFighter\\ship.jpg"));
 			//image = ImageIO.read(url);
 		}
 		catch(Exception e)
 		{
 			System.out.println("Do something you idiot, there is an error");
 		}
+		lives = 10;
 	}
 
 
@@ -72,6 +75,18 @@ public class Ship extends MovingThing
 	public void draw( Graphics window )
 	{
    	window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
+	}
+	
+	public void hit(List<Ammo> shots) {
+		for(int i = 0;i<shots.size();i++){
+			
+				if((shots.get(i).getX() <= getX() + getWidth() && shots.get(i).getX() >= getX() - getWidth()) && (shots.get(i).getY() <= getY() + getHeight() && shots.get(i).getY() >= getY() - getHeight()))
+				{
+					lives--;
+					shots.get(i).setPos(6000, 6000);
+				}
+			
+		}
 	}
 
 	public String toString()

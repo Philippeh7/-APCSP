@@ -100,23 +100,24 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			shots.add(new Ammo(ship.getX() + 20,ship.getY() + 20,ship.getSpeed()));
 		}
-		if (counter == 5){
+		if (counter == 50){
 			for(int i = 0;i<blueshells.returnlist().size();i++){
 				othershots.add(new Ammo(blueshells.returnlist().get(i).getX(),blueshells.returnlist().get(i).getY(), Math.abs(blueshells.returnlist().get(i).getSpeed())));
 			}
 		}
 			
 		
-		
+		counter++;
 		shots.drawEmAll(twoDGraph);
 		shots.moveEmAll();
+		
 		othershots.drawEmAll(twoDGraph);
 		othershots.moveEmAll();
 		blueshells.drawEmAll(twoDGraph);
 		blueshells.moveEmAll();
-		blueshells.removeDeadOnes(shots.getList());
 		horde.moveEmAll();
 		horde.removeDeadOnes(shots.getList());
+		shots.cleanEmUp(horde.getList());
 		//add code to move Ship, Alien, etc.
 		if(ship.getX() < 0)
 			ship.setX(0);
