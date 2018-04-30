@@ -36,7 +36,7 @@ public class AlienHorde
 			
 			try
 			{
-				image = ImageIO.read(new File("C:\\Users\\Philippe\\Desktop\\StarFighter\\alien.jpg"));
+				image = ImageIO.read(new File("C:\\Users\\hansenestruchp0969\\Desktop\\StarFighter\\alien.jpg"));
 			
 			}
 			catch(Exception e)

@@ -13,6 +13,11 @@ public class Blueshellhorde
 	
 	/**
 	 * Instantiates the blueshell class, with picture and basic placement
+	 * @param public void add(Blueshell al) - adds a blueshell class into the 
+	 * @param dramEmAll() - draws all the blushells in the list
+	 * @param moveEmAll() - moves all the blueshells
+	 * @param removeDeadOnes() - checks for hits and removes dead shells
+	 * @param getList() returns the list
 	 */
 
 	public Blueshellhorde(int size)
@@ -34,7 +39,7 @@ public class Blueshellhorde
 			
 			try
 			{
-				image = ImageIO.read(new File("C:\\Users\\Philippe\\Desktop\\StarFighter\\download.jpg"));
+				image = ImageIO.read(new File("C:\\Users\\hansenestruchp0969\\Desktop\\StarFighter\\download.jpg"));
 			
 			}
 			catch(Exception e)
@@ -67,13 +72,13 @@ public class Blueshellhorde
 			blueshells.get(i).setX(blueshells.get(i).getX() + blueshells.get(i).getSpeed()/2);
 			blueshells.get(i).setY(blueshells.get(i).getY() + blueshells.get(i).getSpeed()/2);
 			if(blueshells.get(i).getX()>740)
-				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed() + 1);
+				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed());
 			if(blueshells.get(i).getX()<0)
-				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed() + 1);
+				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed());
 			if(blueshells.get(i).getY()>520)
-				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed() + 1);
+				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed());
 			if(blueshells.get(i).getY()<0)
-				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed() + 1);
+				blueshells.get(i).setSpeed(-blueshells.get(i).getSpeed());
 		}	
 	}
 	/**

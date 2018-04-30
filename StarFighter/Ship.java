@@ -39,7 +39,7 @@ public class Ship extends MovingThing
 		speed=s;
 		try
 		{
-			image = ImageIO.read(new File("C:\\Users\\Philippe\\Desktop\\StarFighter\\ship.jpg"));
+			image = ImageIO.read(new File("C:\\Users\\hansenestruchp0969\\Desktop\\StarFighter\\ship.jpg"));
 			//image = ImageIO.read(url);
 		}
 		catch(Exception e)
@@ -86,6 +86,10 @@ public class Ship extends MovingThing
 					shots.get(i).setPos(6000, 6000);
 				}
 			
+		}
+		if(lives == 0){
+			setWidth(0);
+			setHeight(0);
 		}
 	}
 

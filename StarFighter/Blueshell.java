@@ -10,6 +10,9 @@ public class Blueshell extends MovingThing
 	private int speed;
 	private Image image;
 
+	/**
+	 * Works like the Alien class but with a blue shell image
+	 **/
 	public Blueshell()
 	{
 		this(0,0,30,30,0);
@@ -31,7 +34,7 @@ public class Blueshell extends MovingThing
 		speed=s;
 		try
 		{
-			image = ImageIO.read(new File("C:\\Users\\Philippe\\Desktop\\StarFighter\\download.jpg"));
+			image = ImageIO.read(new File("C:\\Users\\hansenestruchp0969\\Desktop\\StarFighter\\download.jpg"));
 			//image = ImageIO.read(url);
 		}
 		catch(Exception e)
